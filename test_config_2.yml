@@ -1,0 +1,18 @@
+amazme_dag_2:
+  default_args:
+    owner: 'amazme'
+    start_date: 2022-01-01
+  schedule_interval: '0 3 * * *'
+  description: 'Example DAG'
+  tasks:
+    task_1:
+      operator: airflow.operators.bash.BashOperator
+      bash_command: 'echo task_1'
+    task_2:
+      operator: airflow.operators.bash.BashOperator
+      bash_command: 'echo task_2'
+      dependencies: [task_1]
+    task_3:
+      operator: airflow.operators.bash.BashOperator
+      bash_command: 'echo task_3'
+      dependencies: [task_2]
