@@ -6,7 +6,7 @@ from airflow.operators.latest_only import LatestOnlyOperator
 from airflow.utils.trigger_rule import TriggerRule
 
 with DAG(
-    dag_id='latest_only_with_trigger',
+    dag_id='dag_latest_only_with_trigger',
     schedule_interval=dt.timedelta(hours=4),
     start_date=dt.datetime(2021, 1, 1),
     catchup=False,
