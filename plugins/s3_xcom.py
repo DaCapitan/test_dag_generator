@@ -16,7 +16,7 @@ class S3XComBackend(BaseXCom):
         xcom_type_to_db = (dict, list)
 
         if not isinstance(value, xcom_type_to_db):
-            hook = S3Hook("_mls_s3_conn")
+            hook = S3Hook()
             filename = f"data_{str(uuid.uuid4())}.pkl"
             local_filename = os.path.join(S3XComBackend.LOCAL_PREFIX, filename)
             s3_filename = S3XComBackend.S3_PREFIX + filename
@@ -38,7 +38,7 @@ class S3XComBackend(BaseXCom):
         result = BaseXCom.deserialize_value(result)
 
         if isinstance(result, str) and result.startswith(S3XComBackend.S3_PREFIX):
-            hook = S3Hook("_mls_s3_conn")
+            hook = S3Hook()
             key = result
             filename = hook.download_file(key=key,
                                           bucket_name=S3XComBackend.BUCKET_NAME,
